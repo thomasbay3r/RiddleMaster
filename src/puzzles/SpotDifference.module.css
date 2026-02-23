@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.progress {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #c0c0e0;
+}
+
+.canvasRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.canvasWrapper {
+  position: relative;
+  border: 2px solid rgba(192, 192, 224, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.canvasLabel {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(192, 192, 224, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.marker {
+  position: absolute;
+  border: 3px solid #ffd700;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: markerAppear 0.4s ease;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4), 0 0 24px rgba(255, 215, 0, 0.2);
+}
+
+@keyframes markerAppear {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.flashOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 60, 60, 0.2);
+  pointer-events: none;
+  animation: redFlash 0.4s ease forwards;
+}
+
+@keyframes redFlash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.feedback {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  color: #8888aa;
+}
+
+.feedbackSuccess {
+  color: #ffd700;
+}

@@ -1,0 +1,194 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.progress {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #c0c0e0;
+}
+
+.letterPool {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.5rem;
+  padding: 0.75rem;
+  max-width: 400px;
+}
+
+.letterTile {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e8e8f0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(0, 212, 255, 0.15) 0%, rgba(10, 14, 39, 0.8) 70%);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  user-select: none;
+}
+
+.letterTile::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+}
+
+.letterTile:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.letterTileUsed {
+  opacity: 0.2;
+  cursor: default;
+  pointer-events: none;
+}
+
+.answerArea {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.5rem;
+  padding: 0.75rem 1rem;
+  border: 2px dashed rgba(255, 215, 0, 0.25);
+  border-radius: 12px;
+  background: rgba(10, 14, 39, 0.3);
+  max-width: 400px;
+  width: 100%;
+}
+
+.answerTile {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.35);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.answerTile:hover {
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+}
+
+.answerPlaceholder {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #8888aa;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.inputRow {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.textInput {
+  flex: 1;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 2px solid rgba(192, 192, 224, 0.2);
+  border-radius: 8px;
+  color: #e8e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.textInput:focus {
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.submitButton {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+  color: #ffd700;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.submitButton:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.1) 100%);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.2);
+}
+
+.feedback {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  color: #ff6b6b;
+}
+
+.feedbackSuccess {
+  color: #ffd700;
+  animation: celebrateGold 0.8s ease;
+}
+
+@keyframes celebrateGold {
+  0% { transform: scale(1); opacity: 0; }
+  30% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.divider {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #8888aa;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

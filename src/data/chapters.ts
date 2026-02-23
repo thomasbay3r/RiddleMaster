@@ -337,7 +337,19 @@ const chapters: ChapterDef[] = [
         description:
           "Vervollständige das halbierte Sternenmuster, indem du die fehlende Spiegelhälfte ergänzt.",
         isSignature: true,
-        data: {},
+        data: {
+          gridSize: 10,
+          pattern: [
+            [1, 3], [1, 4],
+            [2, 2], [2, 4],
+            [3, 1], [3, 4],
+            [4, 1], [4, 2], [4, 3], [4, 4],
+            [5, 1], [5, 4],
+            [6, 1], [6, 4],
+            [7, 2], [7, 3],
+            [8, 4],
+          ],
+        },
         hints: [
           "Die Spiegelachse verläuft genau durch die Mitte des Bildes.",
           "Achte darauf, dass auch die Helligkeiten der Sterne gespiegelt werden.",
@@ -354,7 +366,14 @@ const chapters: ChapterDef[] = [
         description:
           "Ordne die durcheinander geratenen Buchstaben, um die Namen berühmter Sternbilder zu enthüllen.",
         isSignature: false,
-        data: {},
+        data: {
+          words: [
+            { scrambled: "RIOON", answer: "ORION" },
+            { scrambled: "ALYR", answer: "LYRA" },
+            { scrambled: "AIDPSEOCSA", answer: "CASSIOPEIA" },
+            { scrambled: "RDAOC", answer: "DRACO" },
+          ],
+        },
         hints: [
           "Das erste Anagramm ergibt ein Sternbild mit fünf Buchstaben.",
           "Suche zuerst nach bekannten Buchstabenkombinationen wie 'RI' oder 'ON'.",
@@ -371,7 +390,10 @@ const chapters: ChapterDef[] = [
         description:
           "Verschiebe die Kacheln, um das Bild von Cassiopeias Sternbild wiederherzustellen.",
         isSignature: false,
-        data: {},
+        data: {
+          size: 4,
+          initial: [1, 2, 3, 4, 5, 6, 0, 8, 9, 10, 7, 12, 13, 14, 11, 15],
+        },
         hints: [
           "Beginne damit, die obere Reihe in die richtige Position zu bringen.",
           "Löse das Puzzle Zeile für Zeile von oben nach unten.",
@@ -388,7 +410,26 @@ const chapters: ChapterDef[] = [
         description:
           "Vergleiche zwei Himmelsbilder und finde die versteckten Unterschiede zwischen ihnen.",
         isSignature: false,
-        data: {},
+        data: {
+          canvasWidth: 400,
+          canvasHeight: 300,
+          differences: [
+            { x: 80, y: 60, radius: 20, description: "Stern fehlt" },
+            { x: 200, y: 100, radius: 25, description: "Stern andere Farbe" },
+            { x: 320, y: 80, radius: 20, description: "Zusätzlicher Stern" },
+            { x: 150, y: 220, radius: 25, description: "Mond andere Größe" },
+            { x: 300, y: 200, radius: 20, description: "Linie fehlt" },
+          ],
+          stars: [
+            { x: 80, y: 60, size: 3, color: "#ffffff" },
+            { x: 150, y: 40, size: 2, color: "#ffffff" },
+            { x: 200, y: 100, size: 4, color: "#ffffff" },
+            { x: 280, y: 50, size: 2, color: "#ffffff" },
+            { x: 350, y: 120, size: 3, color: "#ffffff" },
+            { x: 100, y: 180, size: 2, color: "#ffffff" },
+            { x: 250, y: 160, size: 3, color: "#ffffff" },
+          ],
+        },
         hints: [
           "Schaue genau auf die Helligkeit der einzelnen Sterne.",
           "Einer der Unterschiede versteckt sich in der unteren rechten Ecke.",
