@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useGame } from "../context/GameContext.tsx";
@@ -13,6 +13,13 @@ export default function StartScreen() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [welcomeBack, setWelcomeBack] = useState<string | null>(null);
+
+  // Dev mode: skip login, go straight to map
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).has("dev")) {
+      navigate("/map", { replace: true });
+    }
+  }, [navigate]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();

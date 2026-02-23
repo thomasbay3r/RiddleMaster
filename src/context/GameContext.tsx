@@ -52,10 +52,12 @@ const CHAPTERS_PER_ACT = 7;
 export function GameProvider({ children }: { children: ReactNode }) {
   const api = useApi();
 
-  // ?dev=1 on any URL → everything unlocked, free navigation
-  const devMode =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).has("dev");
+  // ?dev on any URL → everything unlocked, free navigation (sticky for session)
+  const [devMode] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).has("dev"),
+  );
 
   const [player, setPlayer] = useState<PlayerState | null>(null);
   const [progress, setProgress] = useState<ProgressEntry[]>([]);
