@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef } from "react";
+import { Fragment, useState, useCallback, useMemo, useRef } from "react";
 import type { PuzzleComponentProps } from "../types.ts";
 import styles from "./Nonogram.module.css";
 
@@ -130,9 +130,9 @@ export default function Nonogram({ puzzle, onSolved }: PuzzleComponentProps) {
 
         {/* Rows */}
         {Array.from({ length: size }, (_, r) => (
-          <>
+          <Fragment key={`row-${r}`}>
             {/* Row hints */}
-            <div key={`rh-${r}`} className={styles.rowHintsCell}>
+            <div className={styles.rowHintsCell}>
               {rowHints[r].map((n, i) => (
                 <span
                   key={i}
@@ -157,7 +157,7 @@ export default function Nonogram({ puzzle, onSolved }: PuzzleComponentProps) {
                 onClick={() => handleCellClick(r, c)}
               />
             ))}
-          </>
+          </Fragment>
         ))}
       </div>
 
