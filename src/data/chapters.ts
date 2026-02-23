@@ -1,6 +1,8 @@
 import type { ChapterDef } from "../types.ts";
+import act2Chapters from "./chapters-act2.ts";
+import act3Chapters from "./chapters-act3.ts";
 
-const chapters: ChapterDef[] = [
+const act1Chapters: ChapterDef[] = [
   // ─────────────────────────────────────────────────────────
   // Kapitel 1 — Lyra (Musik & Harmonie)
   // ─────────────────────────────────────────────────────────
@@ -1009,8 +1011,13 @@ const chapters: ChapterDef[] = [
   },
 ];
 
-// Meta-puzzle solution: STERN LICHT WEIST DEN WEG HEIM
-// "Sternlicht weist den Weg heim."
+// Merge all three acts into a single chapters array
+const chapters: ChapterDef[] = [...act1Chapters, ...act2Chapters, ...act3Chapters];
+
+// Meta-puzzle solutions:
+// Act 1: STERN LICHT WEIST DEN WEG HEIM → "Sternlicht weist den Weg heim."
+// Act 2: MUT TRÄGT DURCH DIE DUNKLE NACHT → "Mut trägt durch die dunkle Nacht."
+// Act 3: FÜR IMMER VEREINT IM STERNEN GLANZ → "Für immer vereint im Sternenglanz."
 
 export function getChapter(id: number): ChapterDef | undefined {
   return chapters.find((c) => c.id === id);

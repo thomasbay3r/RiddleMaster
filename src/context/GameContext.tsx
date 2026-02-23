@@ -28,6 +28,8 @@ interface GameContextValue extends GameState {
   isPuzzleSolved: (chapter: number, puzzle: number) => boolean;
   isChapterComplete: (chapter: number) => boolean;
   isChapterUnlocked: (chapter: number) => boolean;
+  isActComplete: (act: number) => boolean;
+  isActUnlocked: (act: number) => boolean;
   getHintsUsed: (chapter: number, puzzle: number) => number;
 }
 
@@ -40,12 +42,20 @@ const GameContext = createContext<GameContextValue | null>(null);
 /** Number of puzzles per chapter (1 signature + 3 regular) */
 const PUZZLES_PER_CHAPTER = 4;
 
+/** Number of chapters per act */
+const CHAPTERS_PER_ACT = 7;
+
 /* ------------------------------------------------------------------ */
 /*  Provider                                                           */
 /* ------------------------------------------------------------------ */
 
 export function GameProvider({ children }: { children: ReactNode }) {
   const api = useApi();
+
+  // ?dev=1 on any URL → everything unlocked, free navigation
+  const devMode =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).has("dev");
 
   const [player, setPlayer] = useState<PlayerState | null>(null);
   const [progress, setProgress] = useState<ProgressEntry[]>([]);
@@ -129,28 +139,62 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const isPuzzleSolved = useCallback(
     (chapter: number, puzzle: number): boolean =>
+      devMode ||
       progress.some(
         (e) => e.chapter === chapter && e.puzzle === puzzle && e.solved,
       ),
-    [progress],
+    [progress, devMode],
   );
 
   const isChapterComplete = useCallback(
     (chapter: number): boolean => {
+      if (devMode) return true;
       const solved = progress.filter(
         (e) => e.chapter === chapter && e.solved,
       ).length;
       return solved >= PUZZLES_PER_CHAPTER;
     },
-    [progress],
+    [progress, devMode],
   );
 
   const isChapterUnlocked = useCallback(
     (chapter: number): boolean => {
+      if (devMode) return true;
       if (chapter <= 1) return true;
+      // First chapter of a new act requires previous act complete
+      if ((chapter - 1) % CHAPTERS_PER_ACT === 0) {
+        const prevAct = Math.floor((chapter - 1) / CHAPTERS_PER_ACT);
+        // Check all chapters in previous act are complete
+        const prevActStart = (prevAct - 1) * CHAPTERS_PER_ACT + 1;
+        for (let i = prevActStart; i < prevActStart + CHAPTERS_PER_ACT; i++) {
+          if (!isChapterComplete(i)) return false;
+        }
+        return true;
+      }
       return isChapterComplete(chapter - 1);
     },
-    [isChapterComplete],
+    [isChapterComplete, devMode],
+  );
+
+  const isActComplete = useCallback(
+    (act: number): boolean => {
+      if (devMode) return true;
+      const start = (act - 1) * CHAPTERS_PER_ACT + 1;
+      for (let i = start; i < start + CHAPTERS_PER_ACT; i++) {
+        if (!isChapterComplete(i)) return false;
+      }
+      return true;
+    },
+    [isChapterComplete, devMode],
+  );
+
+  const isActUnlocked = useCallback(
+    (act: number): boolean => {
+      if (devMode) return true;
+      if (act <= 1) return true;
+      return isActComplete(act - 1);
+    },
+    [isActComplete, devMode],
   );
 
   const getHintsUsed = useCallback(
@@ -179,6 +223,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
     isPuzzleSolved,
     isChapterComplete,
     isChapterUnlocked,
+    isActComplete,
+    isActUnlocked,
     getHintsUsed,
   };
 

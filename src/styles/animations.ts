@@ -21,6 +21,7 @@ export const scaleIn: Variants = {
 export const stagger = (staggerDelay = 0.1): Variants => ({
   hidden: {},
   visible: { transition: { staggerChildren: staggerDelay } },
+  exit: { transition: { staggerChildren: staggerDelay / 2 } },
 });
 
 export const starPulse: Variants = {

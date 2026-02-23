@@ -3,17 +3,25 @@ import { motion } from "framer-motion";
 import { fadeIn, slideUp } from "../styles/animations.ts";
 import styles from "./Finale.module.css";
 
-const CONSTELLATIONS = [
-  "Lyra",
-  "Ursa Minor",
-  "Cassiopeia",
-  "Orion",
-  "Cygnus",
-  "Draco",
-  "Corona Borealis",
+const ACTS = [
+  {
+    title: "Akt I — Die Erweckung",
+    constellations: ["Lyra", "Ursa Minor", "Cassiopeia", "Orion", "Cygnus", "Draco", "Corona Borealis"],
+    phrase: "Sternlicht weist den Weg heim",
+  },
+  {
+    title: "Akt II — Die Prüfung",
+    constellations: ["Pegasus", "Scorpius", "Gemini", "Aquila", "Perseus", "Centaurus", "Phoenix"],
+    phrase: "Mut trägt durch die dunkle Nacht",
+  },
+  {
+    title: "Akt III — Die Vollendung",
+    constellations: ["Hydra", "Sagittarius", "Leo", "Virgo", "Aquarius", "Aries", "Ophiuchus"],
+    phrase: "Für immer vereint im Sternenglanz",
+  },
 ];
 
-const PARTICLE_COUNT = 25;
+const PARTICLE_COUNT = 35;
 
 const slowFadeIn = {
   hidden: { opacity: 0 },
@@ -39,20 +47,26 @@ export default function Finale() {
         ))}
       </div>
 
-      <motion.div className={styles.constellations} variants={fadeIn}>
-        {CONSTELLATIONS.map((name) => (
-          <span key={name} className={styles.constellationName}>
-            {name}
-          </span>
-        ))}
-      </motion.div>
+      {ACTS.map((act) => (
+        <motion.div key={act.title} className={styles.actSection} variants={fadeIn}>
+          <h3 className={styles.actTitle}>{act.title}</h3>
+          <div className={styles.constellations}>
+            {act.constellations.map((name) => (
+              <span key={name} className={styles.constellationName}>
+                {name}
+              </span>
+            ))}
+          </div>
+          <p className={styles.phrase}>{act.phrase}</p>
+        </motion.div>
+      ))}
 
       <motion.h1 className={styles.heading} variants={slideUp}>
         Für dich leuchten die Sterne.
       </motion.h1>
 
       <motion.p className={styles.subtitle} variants={slideUp}>
-        Du hast alle Sternbilder zum Leben erweckt.
+        Du hast alle 21 Sternbilder zum Leben erweckt und drei kosmische Botschaften enthüllt.
       </motion.p>
 
       <motion.button

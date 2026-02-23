@@ -31,21 +31,43 @@
   line-height: 1.6;
 }
 
+/* --- Act Sections --- */
+.actSection {
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.actTitle {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #c0c0e0;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
 .constellations {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem 1.5rem;
-  margin-bottom: 3rem;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
   max-width: 600px;
 }
 
 .constellationName {
   font-family: 'Cinzel', serif;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
   color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-  padding: 0.3rem 0;
+  padding: 0.2rem 0;
+}
+
+.phrase {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: #a0a0c0;
+  font-style: italic;
+  margin: 0;
 }
 
 .mapLink {
@@ -75,6 +97,7 @@
 
 .particle {
   position: absolute;
+  bottom: 0;
   background: #ffd700;
   border-radius: 50%;
   opacity: 0;
@@ -118,6 +141,16 @@
 .particle:nth-child(23) { left: 52%; animation-delay: 0.5s; animation-duration: 4.3s; }
 .particle:nth-child(24) { left: 68%; animation-delay: 1.3s; animation-duration: 3.4s; }
 .particle:nth-child(25) { left: 82%; animation-delay: 0.8s; animation-duration: 4.5s; }
+.particle:nth-child(26) { left: 12%; animation-delay: 2.0s; animation-duration: 3.3s; }
+.particle:nth-child(27) { left: 28%; animation-delay: 0.4s; animation-duration: 4.0s; }
+.particle:nth-child(28) { left: 42%; animation-delay: 1.7s; animation-duration: 3.7s; }
+.particle:nth-child(29) { left: 58%; animation-delay: 0.9s; animation-duration: 4.4s; }
+.particle:nth-child(30) { left: 72%; animation-delay: 1.5s; animation-duration: 3.2s; }
+.particle:nth-child(31) { left: 88%; animation-delay: 0.6s; animation-duration: 4.1s; }
+.particle:nth-child(32) { left: 3%;  animation-delay: 1.9s; animation-duration: 3.5s; }
+.particle:nth-child(33) { left: 33%; animation-delay: 0.1s; animation-duration: 4.6s; }
+.particle:nth-child(34) { left: 63%; animation-delay: 1.2s; animation-duration: 3.9s; }
+.particle:nth-child(35) { left: 93%; animation-delay: 0.3s; animation-duration: 4.2s; }
 
 @keyframes finaleFloat {
   0% {

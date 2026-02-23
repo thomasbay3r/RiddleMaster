@@ -4,8 +4,8 @@ import { getChapter, getAllChapters } from "./chapters.ts";
 describe("chapters data", () => {
   const chapters = getAllChapters();
 
-  it("has exactly 7 chapters", () => {
-    expect(chapters).toHaveLength(7);
+  it("has exactly 21 chapters (3 acts x 7)", () => {
+    expect(chapters).toHaveLength(21);
   });
 
   it("each chapter has 4 puzzles", () => {
@@ -14,8 +14,9 @@ describe("chapters data", () => {
     }
   });
 
-  it("chapters have sequential IDs 1-7", () => {
-    expect(chapters.map((c) => c.id)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+  it("chapters have sequential IDs 1-21", () => {
+    const expected = Array.from({ length: 21 }, (_, i) => i + 1);
+    expect(chapters.map((c) => c.id)).toEqual(expected);
   });
 
   it("each puzzle has exactly 2 distinct hints", () => {
@@ -50,17 +51,19 @@ describe("chapters data", () => {
     }
   });
 
-  it("first 6 chapters have a clue on their signature puzzle", () => {
-    for (let i = 1; i <= 6; i++) {
-      const ch = getChapter(i)!;
+  it("non-meta chapters have a clue on their signature puzzle", () => {
+    // Chapters 1-6 (Act 1), 8-13 (Act 2), 15-20 (Act 3) should have clues
+    const nonMetaIds = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20];
+    for (const id of nonMetaIds) {
+      const ch = getChapter(id)!;
       const sig = ch.puzzles.find((p) => p.isSignature)!;
-      expect(sig.clue).toBeTruthy();
+      expect(sig.clue, `Chapter ${id} signature puzzle should have a clue`).toBeTruthy();
     }
   });
 
   it("getChapter returns undefined for invalid ID", () => {
     expect(getChapter(0)).toBeUndefined();
-    expect(getChapter(8)).toBeUndefined();
+    expect(getChapter(22)).toBeUndefined();
     expect(getChapter(-1)).toBeUndefined();
   });
 
@@ -69,11 +72,28 @@ describe("chapters data", () => {
     expect(ch3).toBeDefined();
     expect(ch3!.id).toBe(3);
     expect(ch3!.name).toBe("Cassiopeia");
+
+    const ch14 = getChapter(14);
+    expect(ch14).toBeDefined();
+    expect(ch14!.name).toBe("Phoenix");
+
+    const ch21 = getChapter(21);
+    expect(ch21).toBeDefined();
+    expect(ch21!.name).toBe("Ophiuchus");
   });
 
   it("all puzzle IDs are unique", () => {
     const ids = chapters.flatMap((ch) => ch.puzzles.map((p) => p.id));
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("act boundaries are correct (7 chapters per act)", () => {
+    const act1 = chapters.filter((c) => c.id >= 1 && c.id <= 7);
+    const act2 = chapters.filter((c) => c.id >= 8 && c.id <= 14);
+    const act3 = chapters.filter((c) => c.id >= 15 && c.id <= 21);
+    expect(act1).toHaveLength(7);
+    expect(act2).toHaveLength(7);
+    expect(act3).toHaveLength(7);
   });
 });
 
@@ -139,8 +159,8 @@ describe("word chain puzzle solvability", () => {
   });
 });
 
-describe("meta puzzle answer", () => {
-  it("matches clues when spaces are removed", () => {
+describe("meta puzzle answers", () => {
+  it("Act 1 meta (ch7) matches clues when spaces are removed", () => {
     const ch7 = getChapter(7)!;
     const meta = ch7.puzzles.find((p) => p.type === "meta-puzzle")!;
     const data = meta.data as {
@@ -148,13 +168,47 @@ describe("meta puzzle answer", () => {
       cluesByChapter: Record<number, string>;
     };
 
-    // Collect clues from chapters 1-6
     const clueWords: string[] = [];
     for (let i = 1; i <= 6; i++) {
       clueWords.push(data.cluesByChapter[i]);
     }
 
-    // When joined and spaces removed, should match answer
+    const clueJoined = clueWords.join("").replace(/\s+/g, "").toLowerCase();
+    const answerNormalized = data.answer.replace(/\s+/g, "").toLowerCase();
+    expect(clueJoined).toBe(answerNormalized);
+  });
+
+  it("Act 2 meta (ch14) matches clues when spaces are removed", () => {
+    const ch14 = getChapter(14)!;
+    const meta = ch14.puzzles.find((p) => p.type === "meta-puzzle")!;
+    const data = meta.data as {
+      answer: string;
+      cluesByChapter: Record<number, string>;
+    };
+
+    const clueWords: string[] = [];
+    for (let i = 8; i <= 13; i++) {
+      clueWords.push(data.cluesByChapter[i]);
+    }
+
+    const clueJoined = clueWords.join("").replace(/\s+/g, "").toLowerCase();
+    const answerNormalized = data.answer.replace(/\s+/g, "").toLowerCase();
+    expect(clueJoined).toBe(answerNormalized);
+  });
+
+  it("Act 3 meta (ch21) matches clues when spaces are removed", () => {
+    const ch21 = getChapter(21)!;
+    const meta = ch21.puzzles.find((p) => p.type === "meta-puzzle")!;
+    const data = meta.data as {
+      answer: string;
+      cluesByChapter: Record<number, string>;
+    };
+
+    const clueWords: string[] = [];
+    for (let i = 15; i <= 20; i++) {
+      clueWords.push(data.cluesByChapter[i]);
+    }
+
     const clueJoined = clueWords.join("").replace(/\s+/g, "").toLowerCase();
     const answerNormalized = data.answer.replace(/\s+/g, "").toLowerCase();
     expect(clueJoined).toBe(answerNormalized);

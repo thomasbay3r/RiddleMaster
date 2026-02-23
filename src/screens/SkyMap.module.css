@@ -16,6 +16,69 @@
   text-align: center;
 }
 
+/* --- Act Tabs --- */
+.actTabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.actTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(192, 192, 224, 0.25);
+  border-radius: 8px;
+  background: rgba(10, 14, 39, 0.6);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.actTab:hover:not(:disabled) {
+  border-color: rgba(192, 192, 224, 0.5);
+  background: rgba(10, 14, 39, 0.8);
+}
+
+.actTabTitle {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: #c0c0e0;
+}
+
+.actTabSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  color: #8888aa;
+}
+
+.actTabActive {
+  border-color: rgba(255, 215, 0, 0.5);
+  background: rgba(255, 215, 0, 0.08);
+}
+
+.actTabActive .actTabTitle {
+  color: #ffd700;
+}
+
+.actTabActive .actTabSubtitle {
+  color: #c0c0e0;
+}
+
+.actTabLocked {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.actTabComplete .actTabTitle {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+/* --- Map Area --- */
 .mapArea {
   position: relative;
   width: 100%;
@@ -65,6 +128,7 @@
 .available {
   color: #c0c0e0;
   cursor: pointer;
+  animation: starPulse 3s ease-in-out infinite;
 }
 
 .available:hover {
@@ -80,9 +144,20 @@
 .complete {
   color: #ffd700;
   cursor: default;
+  animation: goldenGlow 2s ease-in-out infinite;
 }
 
 .complete .star {
   background: #ffd700;
   box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+@keyframes starPulse {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes goldenGlow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4)); }
+  50% { filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.67)); }
 }
