@@ -1,17 +1,185 @@
+import { useState, useCallback, useRef } from "react";
 import type { PuzzleComponentProps } from "../types.ts";
+import styles from "./WordChain.module.css";
+
+interface WordChainData {
+  startWord: string;
+  targetWord: string;
+  steps: number;
+  validWords: string[];
+}
 
 export default function WordChain({ puzzle, onSolved }: PuzzleComponentProps) {
+  const data = puzzle.data as unknown as WordChainData;
+  const { startWord, targetWord, steps, validWords } = data;
+  const validSet = useRef(new Set(validWords.map((w) => w.toUpperCase()))).current;
+
+  const [chain, setChain] = useState<string[]>([startWord.toUpperCase()]);
+  const [inputValue, setInputValue] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [solved, setSolved] = useState(false);
+  const solvedRef = useRef(false);
+
+  const lastWord = chain[chain.length - 1];
+  const lastLetter = lastWord[lastWord.length - 1];
+
+  const handleSubmit = useCallback(() => {
+    if (solvedRef.current) return;
+    const word = inputValue.trim().toUpperCase();
+    if (!word) return;
+
+    setErrorMsg("");
+
+    // Validate: starts with last letter of previous word
+    if (word[0] !== lastLetter) {
+      setErrorMsg(
+        `Das Wort muss mit "${lastLetter}" beginnen.`
+      );
+      setInputValue("");
+      return;
+    }
+
+    // Validate: is a valid word
+    if (!validSet.has(word)) {
+      setErrorMsg("Dieses Wort ist nicht in der Wortliste enthalten.");
+      setInputValue("");
+      return;
+    }
+
+    // Validate: not already used
+    if (chain.includes(word)) {
+      setErrorMsg("Dieses Wort wurde bereits verwendet.");
+      setInputValue("");
+      return;
+    }
+
+    const newChain = [...chain, word];
+    setChain(newChain);
+    setInputValue("");
+
+    // Check if we reached steps + 1 words (start + N steps)
+    if (newChain.length === steps + 1) {
+      if (word === targetWord.toUpperCase()) {
+        solvedRef.current = true;
+        setSolved(true);
+        setTimeout(() => onSolved(), 1200);
+      } else {
+        setErrorMsg(
+          `Das letzte Wort muss "${targetWord}" sein. Versuche eine andere Kette.`
+        );
+        // Remove the last word so they can try again
+        setChain(chain);
+      }
+    }
+  }, [inputValue, lastLetter, validSet, chain, steps, targetWord, onSolved]);
+
+  const handleBacktrack = useCallback(() => {
+    if (chain.length <= 1 || solvedRef.current) return;
+    setChain(chain.slice(0, -1));
+    setErrorMsg("");
+  }, [chain]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleSubmit();
+      }
+    },
+    [handleSubmit]
+  );
+
+  const canAddMore = chain.length < steps + 1 && !solved;
+
   return (
-    <div style={{ textAlign: "center", padding: "2rem" }}>
-      <h3>{puzzle.title}</h3>
-      <p style={{ color: "#8888aa" }}>{puzzle.description}</p>
-      <p style={{ color: "#8888aa", marginTop: "1rem" }}>Wird bald implementiert...</p>
-      <button
-        onClick={onSolved}
-        style={{ marginTop: "2rem", padding: "0.5rem 1.5rem", background: "#ffd700", border: "none", borderRadius: "0.5rem", cursor: "pointer" }}
-      >
-        [Debug] Als gelöst markieren
-      </button>
+    <div className={styles.container}>
+      <p className={styles.description}>{puzzle.description}</p>
+
+      <p className={styles.stepCounter}>
+        Schritt {Math.min(chain.length, steps + 1)} von {steps + 1}
+      </p>
+
+      <div className={styles.chain}>
+        {chain.map((word, i) => {
+          const isLast = i === chain.length - 1;
+          const isTarget = solved && isLast;
+          let bubbleStyle = styles.startWord;
+          if (i > 0) {
+            bubbleStyle = isTarget ? styles.targetWordReached : styles.chainWord;
+          }
+          return (
+            <div key={`${word}-${i}`} style={{ display: "contents" }}>
+              {i > 0 && (
+                <div
+                  className={`${styles.connector} ${styles.connectorActive}`}
+                />
+              )}
+              <div className={`${styles.wordBubble} ${bubbleStyle}`}>
+                {word}
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Show target placeholder if not yet reached */}
+        {canAddMore && (
+          <>
+            <div className={styles.connector} />
+            {chain.length === steps ? (
+              <div className={`${styles.wordBubble} ${styles.targetWord}`}>
+                {targetWord}
+              </div>
+            ) : (
+              <div className={`${styles.wordBubble} ${styles.targetWord}`}>
+                ?
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
+      {canAddMore && (
+        <div className={styles.inputArea}>
+          <div className={styles.inputRow}>
+            <input
+              className={styles.input}
+              type="text"
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+                setErrorMsg("");
+              }}
+              onKeyDown={handleKeyDown}
+              placeholder={`Wort mit "${lastLetter}"...`}
+              autoFocus
+            />
+            <button
+              className={styles.submitButton}
+              onClick={handleSubmit}
+              disabled={!inputValue.trim()}
+            >
+              Eingabe
+            </button>
+          </div>
+
+          <button
+            className={styles.backtrackButton}
+            onClick={handleBacktrack}
+            disabled={chain.length <= 1}
+          >
+            Letztes Wort entfernen
+          </button>
+
+          <p className={styles.hint}>
+            Zielwort: <strong>{targetWord}</strong> (in {steps} Schritten)
+          </p>
+        </div>
+      )}
+
+      <p className={errorMsg ? styles.error : styles.success}>
+        {errorMsg}
+        {solved && "Wortkette vollendet!"}
+      </p>
     </div>
   );
 }

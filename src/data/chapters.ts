@@ -27,7 +27,18 @@ const chapters: ChapterDef[] = [
         description:
           "Die Sterne der Lyra spielen eine himmlische Melodie. Merke dir die Reihenfolge der Töne und spiele sie nach.",
         isSignature: true,
-        data: {},
+        data: {
+          sequence: [0, 2, 4, 6, 4, 2, 0],
+          starPositions: [
+            { x: 15, y: 60 },
+            { x: 25, y: 35 },
+            { x: 38, y: 20 },
+            { x: 50, y: 15 },
+            { x: 62, y: 20 },
+            { x: 75, y: 35 },
+            { x: 85, y: 60 },
+          ],
+        },
         hints: [
           "Achte auf die Farben der Sterne, wenn sie aufleuchten.",
           "Die Melodie beginnt immer mit dem hellsten Stern oben links.",
@@ -44,7 +55,30 @@ const chapters: ChapterDef[] = [
         description:
           "Sortiere 16 musikalische und himmlische Begriffe in vier zusammengehörige Gruppen.",
         isSignature: false,
-        data: {},
+        data: {
+          groups: [
+            {
+              label: "Planeten",
+              words: ["Mars", "Venus", "Jupiter", "Saturn"],
+              color: "#ffd700",
+            },
+            {
+              label: "Sternbilder",
+              words: ["Orion", "Lyra", "Draco", "Cygnus"],
+              color: "#00d4ff",
+            },
+            {
+              label: "Mondphasen",
+              words: ["Vollmond", "Neumond", "Halbmond", "Sichelmond"],
+              color: "#9b59b6",
+            },
+            {
+              label: "Galaxien",
+              words: ["Andromeda", "Milchstraße", "Sombrero", "Whirlpool"],
+              color: "#c0c0e0",
+            },
+          ],
+        },
         hints: [
           "Eine Gruppe besteht aus Musikinstrumenten.",
           "Suche nach Begriffen, die mit Klang und Schall zu tun haben.",
@@ -61,7 +95,27 @@ const chapters: ChapterDef[] = [
         description:
           "Finde den Weg durch den schimmernden Sternennebel, um die nächste Saite der Lyra zu erreichen.",
         isSignature: false,
-        data: {},
+        data: {
+          grid: [
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+            [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+            [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+            [1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+            [1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          ],
+          start: [1, 1],
+          end: [13, 13],
+        },
         hints: [
           "Der richtige Weg folgt den leuchtenden Nebelschwaden.",
           "Sackgassen erkennst du an den dunkleren Bereichen.",
@@ -78,7 +132,28 @@ const chapters: ChapterDef[] = [
         description:
           "Bilde eine Kette aus Wörtern, bei der jedes neue Wort mit dem letzten Buchstaben des vorherigen beginnt.",
         isSignature: false,
-        data: {},
+        data: {
+          startWord: "STERN",
+          targetWord: "NACHT",
+          steps: 4,
+          validWords: [
+            "STERN",
+            "NEBEL",
+            "LUNA",
+            "ASTRO",
+            "ORBIT",
+            "TITAN",
+            "NACHT",
+            "NOVA",
+            "ANTARES",
+            "SONNE",
+            "ERDE",
+            "ECLIPSE",
+            "EUROPA",
+            "AURORA",
+            "ANDROMEDA",
+          ],
+        },
         hints: [
           "Beginne mit dem Wort, das am meisten Möglichkeiten eröffnet.",
           "Wörter mit seltenen Endbuchstaben solltest du dir für später aufheben.",
