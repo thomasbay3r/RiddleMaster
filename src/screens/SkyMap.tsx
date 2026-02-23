@@ -66,13 +66,9 @@ const ACTS: ActDef[] = [
 
 export default function SkyMap() {
   const navigate = useNavigate();
-  const { isChapterUnlocked, isChapterComplete, isActComplete, isActUnlocked } = useGame();
+  const { isChapterUnlocked, isChapterComplete, isActComplete, isActUnlocked, devMode } = useGame();
 
   const [activeAct, setActiveAct] = useState(1);
-
-  const devMode =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).has("dev");
 
   const allComplete = isActComplete(1) && isActComplete(2) && isActComplete(3);
 

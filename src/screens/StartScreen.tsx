@@ -7,7 +7,7 @@ import styles from "./StartScreen.module.css";
 
 export default function StartScreen() {
   const navigate = useNavigate();
-  const { login, player } = useGame();
+  const { login, player, devMode } = useGame();
 
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,10 +16,8 @@ export default function StartScreen() {
 
   // Dev mode: skip login, go straight to map
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).has("dev")) {
-      navigate("/map", { replace: true });
-    }
-  }, [navigate]);
+    if (devMode) navigate("/map", { replace: true });
+  }, [devMode, navigate]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();

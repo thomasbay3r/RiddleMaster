@@ -13,6 +13,9 @@ import { useApi } from "../hooks/useApi.ts";
 /* ------------------------------------------------------------------ */
 
 interface GameContextValue extends GameState {
+  /* dev */
+  devMode: boolean;
+
   /* mutations */
   login: (name: string) => Promise<boolean>;
   solvePuzzle: (
@@ -212,6 +215,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   /* ---- value ----------------------------------------------------- */
 
   const value: GameContextValue = {
+    devMode,
     player,
     progress,
     clues,
