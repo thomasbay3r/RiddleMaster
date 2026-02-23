@@ -13,16 +13,23 @@ export default function PuzzleSolved() {
     puzzleId: string;
   }>();
   const navigate = useNavigate();
-  const { clues, isPuzzleSolved } = useGame();
+  const { clues, player, isPuzzleSolved } = useGame();
 
   const chapNum = Number(chapterId);
   const puzzNum = Number(puzzleId);
+
+  // Guard against invalid params
+  if (isNaN(chapNum) || isNaN(puzzNum)) {
+    navigate("/map", { replace: true });
+    return null;
+  }
 
   const chapter = getChapter(chapNum);
   const puzzle = chapter?.puzzles.find((p) => p.puzzleIndex === puzzNum);
 
   // Protect route: redirect if puzzle hasn't actually been solved
-  if (!isPuzzleSolved(chapNum, puzzNum)) {
+  // (also wait for player state to be loaded)
+  if (!player || !isPuzzleSolved(chapNum, puzzNum)) {
     return (
       <motion.div
         className={styles.container}

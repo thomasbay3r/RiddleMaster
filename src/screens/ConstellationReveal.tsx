@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn, slideUp } from "../styles/animations.ts";
-import { getChapter } from "../data/chapters.ts";
+import { getChapter, getAllChapters } from "../data/chapters.ts";
 import styles from "./ConstellationReveal.module.css";
 
 /**
@@ -51,6 +51,7 @@ export default function ConstellationReveal() {
     );
   }
 
+  const totalChapters = getAllChapters().length;
   const stars = STAR_PATTERNS[id] ?? STAR_PATTERNS[1]!;
   const lines = getLines(stars);
 
@@ -99,9 +100,9 @@ export default function ConstellationReveal() {
       <motion.button
         className={styles.mapButton}
         variants={slideUp}
-        onClick={() => navigate(id === 7 ? "/finale" : "/map")}
+        onClick={() => navigate(id === totalChapters ? "/finale" : "/map")}
       >
-        {id === 7 ? "Sternenreise vollenden" : "Zur Himmelskarte"}
+        {id === totalChapters ? "Sternenreise vollenden" : "Zur Himmelskarte"}
       </motion.button>
     </motion.div>
   );

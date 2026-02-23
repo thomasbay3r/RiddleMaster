@@ -43,10 +43,10 @@ export default function MetaPuzzle({ puzzle, onSolved }: PuzzleComponentProps) {
   );
 
   const handleSubmit = useCallback(() => {
-    if (solvedRef.current) return;
+    if (solvedRef.current || !allCollected) return;
 
-    const normalized = input.replace(/\s+/g, " ").trim().toLowerCase();
-    const expected = data.answer.replace(/\s+/g, " ").trim().toLowerCase();
+    const normalized = input.replace(/\s+/g, "").trim().toLowerCase();
+    const expected = data.answer.replace(/\s+/g, "").trim().toLowerCase();
 
     if (normalized === expected) {
       solvedRef.current = true;
@@ -58,7 +58,7 @@ export default function MetaPuzzle({ puzzle, onSolved }: PuzzleComponentProps) {
       setShaking(true);
       setTimeout(() => setShaking(false), 500);
     }
-  }, [input, data.answer, onSolved]);
+  }, [input, data.answer, onSolved, allCollected]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {

@@ -53,25 +53,33 @@ export default function WordChain({ puzzle, onSolved }: PuzzleComponentProps) {
       return;
     }
 
-    const newChain = [...chain, word];
-    setChain(newChain);
-    setInputValue("");
+    const isTarget = word === targetWord.toUpperCase();
 
-    // Accept target word at any step (early completion)
-    if (word === targetWord.toUpperCase()) {
-      solvedRef.current = true;
-      setSolved(true);
-      setTimeout(() => onSolved(), 1200);
+    // Require at least one intermediate word before accepting target
+    if (isTarget && chain.length < 2) {
+      setErrorMsg("Baue erst eine Kette auf, bevor du das Zielwort eingibst.");
+      setInputValue("");
       return;
     }
 
     // Check if we used all steps without reaching the target
-    if (newChain.length === steps + 1) {
+    if (chain.length === steps && !isTarget) {
       setErrorMsg(
         `Das letzte Wort muss "${targetWord}" sein. Versuche eine andere Kette.`
       );
-      // Remove the last word so they can try again
-      setChain(chain);
+      setInputValue("");
+      return;
+    }
+
+    const newChain = [...chain, word];
+    setChain(newChain);
+    setInputValue("");
+
+    // Accept target word (early or on-time completion)
+    if (isTarget) {
+      solvedRef.current = true;
+      setSolved(true);
+      setTimeout(() => onSolved(), 1200);
     }
   }, [inputValue, lastLetter, validSet, chain, steps, targetWord, onSolved]);
 
@@ -98,7 +106,7 @@ export default function WordChain({ puzzle, onSolved }: PuzzleComponentProps) {
       <p className={styles.description}>{puzzle.description}</p>
 
       <p className={styles.stepCounter}>
-        Schritt {Math.min(chain.length, steps + 1)} von {steps + 1}
+        Schritt {Math.min(chain.length - 1, steps)} von {steps}
       </p>
 
       <div className={styles.chain}>

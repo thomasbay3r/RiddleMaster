@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import type { PuzzleComponentProps } from "../types.ts";
 import styles from "./Connections.module.css";
 
@@ -43,6 +43,24 @@ export default function Connections({ puzzle, onSolved }: PuzzleComponentProps) 
     [shuffledWords, foundWords]
   );
 
+  // Auto-resolve last remaining group after a short delay
+  useEffect(() => {
+    if (solvedRef.current) return;
+    if (foundGroups.length !== groups.length - 1) return;
+
+    const lastGroup = groups.find((g) => !foundGroups.includes(g));
+    if (!lastGroup) return;
+
+    const timer = setTimeout(() => {
+      setFoundGroups((prev) => [...prev, lastGroup]);
+      setStatusMsg("Alle Gruppen gefunden!");
+      solvedRef.current = true;
+      setTimeout(() => onSolved(), 1200);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, [foundGroups, groups, onSolved]);
+
   const handleTileClick = useCallback(
     (word: string) => {
       if (foundWords.has(word) || solvedRef.current) return;
@@ -70,26 +88,14 @@ export default function Connections({ puzzle, onSolved }: PuzzleComponentProps) 
     );
 
     if (matchedGroup) {
-      let newFound = [...foundGroups, matchedGroup];
+      const newFound = [...foundGroups, matchedGroup];
       setSelected([]);
-      setStatusMsg(`"${matchedGroup.label}" gefunden!`);
-
-      // Auto-resolve last remaining group
-      if (newFound.length === groups.length - 1) {
-        const lastGroup = groups.find((g) => !newFound.includes(g));
-        if (lastGroup) {
-          newFound = [...newFound, lastGroup];
-          setStatusMsg("Alle Gruppen gefunden!");
-        }
-      }
-
       setFoundGroups(newFound);
+      setStatusMsg(`"${matchedGroup.label}" gefunden!`);
 
       if (newFound.length === groups.length) {
         solvedRef.current = true;
-        if (newFound.length === groups.length) {
-          setStatusMsg("Alle Gruppen gefunden!");
-        }
+        setStatusMsg("Alle Gruppen gefunden!");
         setTimeout(() => onSolved(), 1200);
       }
     } else {

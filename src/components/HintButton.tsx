@@ -11,21 +11,20 @@ interface HintButtonProps {
 
 export default function HintButton({ hints, hintsUsed, onHint }: HintButtonProps) {
   const [showModal, setShowModal] = useState(false);
+  const [displayIndex, setDisplayIndex] = useState(0);
   const allUsed = hintsUsed >= 2;
 
   function handleClick() {
     if (allUsed) return;
     const nextHint = hintsUsed; // 0 or 1
-    onHint(nextHint);
+    setDisplayIndex(nextHint);
     setShowModal(true);
+    onHint(nextHint);
   }
 
   function handleClose() {
     setShowModal(false);
   }
-
-  /* The hint to display is the most recently revealed one */
-  const displayIndex = Math.min(hintsUsed, 1);
 
   return (
     <>
