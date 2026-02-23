@@ -153,22 +153,20 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const isPuzzleSolved = useCallback(
     (chapter: number, puzzle: number): boolean =>
-      devMode ||
       progress.some(
         (e) => e.chapter === chapter && e.puzzle === puzzle && e.solved,
       ),
-    [progress, devMode],
+    [progress],
   );
 
   const isChapterComplete = useCallback(
     (chapter: number): boolean => {
-      if (devMode) return true;
       const solved = progress.filter(
         (e) => e.chapter === chapter && e.solved,
       ).length;
       return solved >= PUZZLES_PER_CHAPTER;
     },
-    [progress, devMode],
+    [progress],
   );
 
   const isChapterUnlocked = useCallback(
@@ -192,14 +190,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const isActComplete = useCallback(
     (act: number): boolean => {
-      if (devMode) return true;
       const start = (act - 1) * CHAPTERS_PER_ACT + 1;
       for (let i = start; i < start + CHAPTERS_PER_ACT; i++) {
         if (!isChapterComplete(i)) return false;
       }
       return true;
     },
-    [isChapterComplete, devMode],
+    [isChapterComplete],
   );
 
   const isActUnlocked = useCallback(
