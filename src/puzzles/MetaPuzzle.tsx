@@ -132,7 +132,7 @@ export default function MetaPuzzle({ puzzle, onSolved }: PuzzleComponentProps) {
         <button
           className={styles.submitButton}
           onClick={handleSubmit}
-          disabled={solved || input.trim().length === 0}
+          disabled={solved || input.trim().length === 0 || !allCollected}
         >
           {solved ? "Gelöst!" : "Prüfen"}
         </button>

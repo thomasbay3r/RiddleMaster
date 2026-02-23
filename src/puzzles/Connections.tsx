@@ -70,14 +70,26 @@ export default function Connections({ puzzle, onSolved }: PuzzleComponentProps) 
     );
 
     if (matchedGroup) {
-      const newFound = [...foundGroups, matchedGroup];
-      setFoundGroups(newFound);
+      let newFound = [...foundGroups, matchedGroup];
       setSelected([]);
       setStatusMsg(`"${matchedGroup.label}" gefunden!`);
 
+      // Auto-resolve last remaining group
+      if (newFound.length === groups.length - 1) {
+        const lastGroup = groups.find((g) => !newFound.includes(g));
+        if (lastGroup) {
+          newFound = [...newFound, lastGroup];
+          setStatusMsg("Alle Gruppen gefunden!");
+        }
+      }
+
+      setFoundGroups(newFound);
+
       if (newFound.length === groups.length) {
         solvedRef.current = true;
-        setStatusMsg("Alle Gruppen gefunden!");
+        if (newFound.length === groups.length) {
+          setStatusMsg("Alle Gruppen gefunden!");
+        }
         setTimeout(() => onSolved(), 1200);
       }
     } else {

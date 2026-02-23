@@ -57,19 +57,21 @@ export default function WordChain({ puzzle, onSolved }: PuzzleComponentProps) {
     setChain(newChain);
     setInputValue("");
 
-    // Check if we reached steps + 1 words (start + N steps)
+    // Accept target word at any step (early completion)
+    if (word === targetWord.toUpperCase()) {
+      solvedRef.current = true;
+      setSolved(true);
+      setTimeout(() => onSolved(), 1200);
+      return;
+    }
+
+    // Check if we used all steps without reaching the target
     if (newChain.length === steps + 1) {
-      if (word === targetWord.toUpperCase()) {
-        solvedRef.current = true;
-        setSolved(true);
-        setTimeout(() => onSolved(), 1200);
-      } else {
-        setErrorMsg(
-          `Das letzte Wort muss "${targetWord}" sein. Versuche eine andere Kette.`
-        );
-        // Remove the last word so they can try again
-        setChain(chain);
-      }
+      setErrorMsg(
+        `Das letzte Wort muss "${targetWord}" sein. Versuche eine andere Kette.`
+      );
+      // Remove the last word so they can try again
+      setChain(chain);
     }
   }, [inputValue, lastLetter, validSet, chain, steps, targetWord, onSolved]);
 

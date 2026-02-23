@@ -13,13 +13,37 @@ export default function PuzzleSolved() {
     puzzleId: string;
   }>();
   const navigate = useNavigate();
-  const { clues } = useGame();
+  const { clues, isPuzzleSolved } = useGame();
 
   const chapNum = Number(chapterId);
   const puzzNum = Number(puzzleId);
 
   const chapter = getChapter(chapNum);
   const puzzle = chapter?.puzzles.find((p) => p.puzzleIndex === puzzNum);
+
+  // Protect route: redirect if puzzle hasn't actually been solved
+  if (!isPuzzleSolved(chapNum, puzzNum)) {
+    return (
+      <motion.div
+        className={styles.container}
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        <motion.p className={styles.subtext} variants={scaleIn}>
+          Dieses Rätsel wurde noch nicht gelöst.
+        </motion.p>
+        <motion.button
+          className={styles.continueButton}
+          variants={scaleIn}
+          onClick={() => navigate(`/chapter/${chapNum}/puzzles`)}
+        >
+          Zurück zu den Rätseln
+        </motion.button>
+      </motion.div>
+    );
+  }
 
   /* Check if there's a clue associated with this puzzle */
   const clueEntry = clues.find((c) => c.chapter === chapNum);

@@ -99,9 +99,9 @@ export default function ConstellationReveal() {
       <motion.button
         className={styles.mapButton}
         variants={slideUp}
-        onClick={() => navigate("/map")}
+        onClick={() => navigate(id === 7 ? "/finale" : "/map")}
       >
-        Zur Himmelskarte
+        {id === 7 ? "Sternenreise vollenden" : "Zur Himmelskarte"}
       </motion.button>
     </motion.div>
   );
