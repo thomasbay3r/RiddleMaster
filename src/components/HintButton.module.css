@@ -1,0 +1,81 @@
+.hintButton {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: rgba(26, 5, 51, 0.6);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 8px;
+  color: #ffd700;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s, border-color 0.3s, opacity 0.3s;
+}
+
+.hintButton:hover:not(:disabled) {
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+.hintButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.icon {
+  font-size: 1.1rem;
+}
+
+/* --- Modal overlay --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 39, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.modal {
+  background: linear-gradient(135deg, #1a0533, #0a0e27);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.modalTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+
+.modalText {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #e8e8f0;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.closeButton {
+  padding: 0.5rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(192, 192, 224, 0.3);
+  border-radius: 8px;
+  color: #c0c0e0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.closeButton:hover {
+  border-color: #c0c0e0;
+}
