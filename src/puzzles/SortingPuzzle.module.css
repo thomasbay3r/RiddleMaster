@@ -1,0 +1,206 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+/* ---- Round info ---- */
+
+.roundInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.roundLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: #c0c0e0;
+}
+
+.roundDots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.roundDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(192, 192, 224, 0.15);
+  border: 1px solid rgba(192, 192, 224, 0.25);
+  transition: all 0.3s ease;
+}
+
+.roundDotDone {
+  background: #ffd700;
+  border-color: #ffd700;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.roundDotCurrent {
+  background: #00d4ff;
+  border-color: #00d4ff;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+.roundTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: #e8e8f0;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.4;
+}
+
+.hint {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #8888aa;
+  text-align: center;
+}
+
+/* ---- Item list ---- */
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.itemCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(10, 14, 39, 0.5);
+  border: 2px solid rgba(192, 192, 224, 0.15);
+  border-radius: 10px;
+  cursor: grab;
+  transition: all 0.25s ease;
+  text-align: left;
+  user-select: none;
+}
+
+.itemCard:hover:not(:disabled) {
+  border-color: rgba(0, 212, 255, 0.4);
+  background: rgba(0, 212, 255, 0.05);
+  transform: translateX(4px);
+}
+
+.itemCard:active:not(:disabled) {
+  cursor: grabbing;
+}
+
+.itemSelected {
+  border-color: #00d4ff !important;
+  background: rgba(0, 212, 255, 0.1) !important;
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.15);
+  transform: scale(1.02);
+}
+
+.itemCorrect {
+  border-color: #ffd700 !important;
+  background: rgba(255, 215, 0, 0.08) !important;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
+  animation: correctPulse 0.5s ease;
+}
+
+.itemIndex {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #00d4ff;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.itemName {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #e8e8f0;
+}
+
+/* ---- Messages ---- */
+
+.wrongMsg {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #ff6b6b;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.successMsg {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  color: #ffd700;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+/* ---- Check button ---- */
+
+.checkButton {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 10px;
+  color: #ffd700;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkButton:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.1) 100%);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/* ---- Animations ---- */
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes correctPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}

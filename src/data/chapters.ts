@@ -890,7 +890,17 @@ const chapters: ChapterDef[] = [
         description:
           "Kombiniere die Hinweise aus allen vorherigen Kapiteln, um die finale Botschaft der Sterne zu enthüllen.",
         isSignature: true,
-        data: {},
+        data: {
+          answer: "Sternlicht weist den Weg heim",
+          cluesByChapter: {
+            1: "STERN",
+            2: "LICHT",
+            3: "WEIST",
+            4: "DEN",
+            5: "WEG",
+            6: "HEIM",
+          },
+        },
         hints: [
           "Jedes abgeschlossene Kapitel hat dir ein Wort offenbart.",
           "Setze die sechs Wörter in der Reihenfolge der Kapitel zusammen.",
@@ -906,7 +916,12 @@ const chapters: ChapterDef[] = [
         description:
           "Beobachte die leuchtende Sternensequenz und wiederhole sie in der richtigen Reihenfolge.",
         isSignature: false,
-        data: {},
+        data: {
+          sequence: [0, 3, 1, 4, 2, 0, 3],
+          starColors: ["#ffd700", "#00d4ff", "#9b59b6", "#c0c0e0", "#e74c3c"],
+          startLength: 4,
+          winLength: 7,
+        },
         hints: [
           "Die Sequenz wird mit jedem Durchgang um einen Stern länger.",
           "Sprich die Farben leise mit, um dir die Reihenfolge besser zu merken.",
@@ -922,7 +937,20 @@ const chapters: ChapterDef[] = [
         description:
           "Bringe die Himmelskörper in die richtige Reihenfolge, von der Sonne bis zum Rand des Sonnensystems.",
         isSignature: false,
-        data: {},
+        data: {
+          rounds: [
+            {
+              title: "Sortiere die Planeten nach Entfernung zur Sonne",
+              items: ["Jupiter", "Mars", "Venus", "Neptun", "Merkur", "Saturn", "Erde", "Uranus"],
+              correctOrder: ["Merkur", "Venus", "Erde", "Mars", "Jupiter", "Saturn", "Uranus", "Neptun"],
+            },
+            {
+              title: "Sortiere die Sterne nach Helligkeit (hellster zuerst)",
+              items: ["Polaris", "Wega", "Sirius", "Antares", "Arktur"],
+              correctOrder: ["Sirius", "Arktur", "Wega", "Antares", "Polaris"],
+            },
+          ],
+        },
         hints: [
           "Merkspruch: 'Mein Vater erklärt mir jeden Sonntag unseren Nachthimmel.'",
           "Der größte Planet befindet sich an fünfter Stelle.",
@@ -936,12 +964,21 @@ const chapters: ChapterDef[] = [
         type: "image-puzzle",
         title: "Bilderrätsel",
         description:
-          "Erkenne die Details aus den Kapitelbildern deiner Reise und beantworte die Fragen dazu.",
+          "Beantworte die kosmischen Fragen und entdecke das verborgene Wort in den Anfangsbuchstaben.",
         isSignature: false,
-        data: {},
+        data: {
+          finalWord: "KRONE",
+          questions: [
+            { question: "Welcher Himmelskörper mit Schweif zieht durchs All?", answer: "KOMET" },
+            { question: "Welche Farbe hat der Planet Mars?", answer: "ROT" },
+            { question: "Welches Sternbild stellt einen Jäger dar?", answer: "ORION" },
+            { question: "Wie heißt eine leuchtende Gaswolke im All?", answer: "NEBEL" },
+            { question: "Wie heißt die Strecke, auf der Planeten die Sonne umkreisen?", answer: "ELLIPSE" },
+          ],
+        },
         hints: [
-          "Schau dir die Einleitungsbilder der vorherigen Kapitel noch einmal genau an.",
-          "Die Antwort auf die dritte Frage findest du im Bild von Kapitel 3.",
+          "Die Anfangsbuchstaben der Antworten ergeben zusammen ein Wort.",
+          "Das gesuchte Wort passt zum Sternbild dieses Kapitels: Corona Borealis.",
         ],
         backgroundImage: "/images/puzzle-bg-ch7.png",
       },

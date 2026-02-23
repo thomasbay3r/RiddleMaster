@@ -1,0 +1,182 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+/* ---- Round info ---- */
+
+.roundInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.roundLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: #c0c0e0;
+}
+
+.roundDots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.roundDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(192, 192, 224, 0.15);
+  border: 1px solid rgba(192, 192, 224, 0.25);
+  transition: all 0.3s ease;
+}
+
+.roundDotDone {
+  background: #ffd700;
+  border-color: #ffd700;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.roundDotCurrent {
+  background: #00d4ff;
+  border-color: #00d4ff;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+/* ---- Star field ---- */
+
+.starField {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 340px;
+}
+
+.star {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, var(--star-color), #1a0533);
+  border: 3px solid var(--star-color);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  opacity: 0.65;
+}
+
+.star:hover:not(:disabled) {
+  transform: translate(-50%, -50%) scale(1.12);
+  opacity: 0.85;
+}
+
+.star:active:not(:disabled) {
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+.starActive {
+  opacity: 1 !important;
+  box-shadow:
+    0 0 24px var(--star-glow),
+    0 0 48px var(--star-glow),
+    0 0 80px var(--star-glow);
+  transform: translate(-50%, -50%) scale(1.15);
+  animation: starPulse 0.5s ease-in-out;
+}
+
+.starClicked {
+  opacity: 1 !important;
+  box-shadow:
+    0 0 16px var(--star-glow),
+    0 0 32px var(--star-glow);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.starDisabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.starInner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+.starLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 2px;
+  pointer-events: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Controls ---- */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #c0c0e0;
+  text-align: center;
+  min-height: 1.5em;
+}
+
+.replayButton {
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  border-radius: 8px;
+  color: #00d4ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.replayButton:hover:not(:disabled) {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: #00d4ff;
+}
+
+.replayButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---- Animations ---- */
+
+@keyframes starPulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1.15); }
+}
