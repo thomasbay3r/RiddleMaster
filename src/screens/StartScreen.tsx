@@ -7,7 +7,7 @@ import styles from "./StartScreen.module.css";
 
 export default function StartScreen() {
   const navigate = useNavigate();
-  const { login, player, devMode } = useGame();
+  const { login, player, devMode, toggleDevMode } = useGame();
 
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -101,6 +101,10 @@ export default function StartScreen() {
           {loading ? <span className={styles.spinner} /> : "Reise beginnen"}
         </button>
       </motion.form>
+
+      <button className={styles.devToggle} onClick={toggleDevMode} type="button">
+        {devMode ? "Dev Mode: ON" : "Dev Mode: OFF"}
+      </button>
     </motion.div>
   );
 }

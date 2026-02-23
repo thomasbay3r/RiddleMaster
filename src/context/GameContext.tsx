@@ -15,6 +15,7 @@ import { useApi } from "../hooks/useApi.ts";
 interface GameContextValue extends GameState {
   /* dev */
   devMode: boolean;
+  toggleDevMode: () => void;
 
   /* mutations */
   login: (name: string) => Promise<boolean>;
@@ -55,12 +56,20 @@ const CHAPTERS_PER_ACT = 7;
 export function GameProvider({ children }: { children: ReactNode }) {
   const api = useApi();
 
-  // ?dev on any URL → everything unlocked, free navigation (sticky for session)
-  const [devMode] = useState(
+  // Dev mode: everything unlocked, free navigation (persisted in localStorage)
+  const [devMode, setDevMode] = useState(
     () =>
       typeof window !== "undefined" &&
-      new URLSearchParams(window.location.search).has("dev"),
+      localStorage.getItem("devMode") === "on",
   );
+
+  const toggleDevMode = useCallback(() => {
+    setDevMode((prev) => {
+      const next = !prev;
+      localStorage.setItem("devMode", next ? "on" : "off");
+      return next;
+    });
+  }, []);
 
   const [player, setPlayer] = useState<PlayerState | null>(null);
   const [progress, setProgress] = useState<ProgressEntry[]>([]);
@@ -216,6 +225,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const value: GameContextValue = {
     devMode,
+    toggleDevMode,
     player,
     progress,
     clues,
