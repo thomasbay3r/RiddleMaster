@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { GameProvider } from "./context/GameContext.tsx";
+import Layout from "./components/Layout.tsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+import StartScreen from "./screens/StartScreen.tsx";
+import SkyMap from "./screens/SkyMap.tsx";
+import ChapterIntro from "./screens/ChapterIntro.tsx";
+import PuzzleSelect from "./screens/PuzzleSelect.tsx";
+import PuzzleScreen from "./screens/PuzzleScreen.tsx";
+import PuzzleSolved from "./screens/PuzzleSolved.tsx";
+import ConstellationReveal from "./screens/ConstellationReveal.tsx";
+import Finale from "./screens/Finale.tsx";
 
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <GameProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<StartScreen />} />
+            <Route path="/map" element={<SkyMap />} />
+            <Route path="/chapter/:chapterId" element={<ChapterIntro />} />
+            <Route path="/chapter/:chapterId/puzzles" element={<PuzzleSelect />} />
+            <Route path="/chapter/:chapterId/puzzle/:puzzleId" element={<PuzzleScreen />} />
+            <Route path="/chapter/:chapterId/puzzle/:puzzleId/solved" element={<PuzzleSolved />} />
+            <Route path="/chapter/:chapterId/reveal" element={<ConstellationReveal />} />
+            <Route path="/finale" element={<Finale />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </GameProvider>
+  );
 }
-
-export default App

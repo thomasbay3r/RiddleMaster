@@ -1,4 +1,4 @@
-import { ProgressEntry } from "../types";
+import type { ProgressEntry } from "../types";
 
 const API_BASE = "/api";
 
