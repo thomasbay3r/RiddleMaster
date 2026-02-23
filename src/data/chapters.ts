@@ -190,7 +190,18 @@ const chapters: ChapterDef[] = [
         description:
           "Folge den Richtungsanweisungen der Sterne, um den Polarstern zu finden.",
         isSignature: true,
-        data: {},
+        data: {
+          gridSize: 8,
+          start: [1, 6],
+          instructions: [
+            { direction: "Norden", steps: 3 },
+            { direction: "Osten", steps: 4 },
+            { direction: "Süden", steps: 1 },
+            { direction: "Osten", steps: 2 },
+            { direction: "Norden", steps: 2 },
+          ],
+          answer: [7, 2],
+        },
         hints: [
           "Norden ist immer am oberen Rand der Himmelskarte.",
           "Die ersten zwei Anweisungen führen dich zum Großen Wagen.",
@@ -207,7 +218,38 @@ const chapters: ChapterDef[] = [
         description:
           "Löse ein Kreuzworträtsel voller Begriffe aus Astronomie und Mythologie.",
         isSignature: false,
-        data: {},
+        data: {
+          grid: [
+            ["M", "O", "N", "D", ".", "S", "."],
+            ["A", ".", ".", ".", ".", "T", "."],
+            ["R", ".", ".", ".", ".", "E", "."],
+            ["S", "O", "N", "N", "E", "R", "."],
+            [".", ".", ".", ".", ".", "N", "."],
+            [".", "K", "O", "M", "E", "T", "."],
+            [".", "P", "L", "U", "T", "O", "."],
+          ],
+          emptyGrid: [
+            [" ", " ", " ", " ", ".", " ", "."],
+            [" ", ".", ".", ".", ".", " ", "."],
+            [" ", ".", ".", ".", ".", " ", "."],
+            [" ", " ", " ", " ", " ", " ", "."],
+            [".", ".", ".", ".", ".", " ", "."],
+            [".", " ", " ", " ", " ", " ", "."],
+            [".", " ", " ", " ", " ", " ", "."],
+          ],
+          clues: {
+            across: [
+              { number: 1, row: 0, col: 0, length: 4, text: "Erdtrabant, leuchtet nachts (4)", answer: "MOND" },
+              { number: 3, row: 3, col: 0, length: 5, text: "Unser nächster Stern (5)", answer: "SONNE" },
+              { number: 4, row: 5, col: 1, length: 5, text: "Himmelskörper mit Schweif (5)", answer: "KOMET" },
+              { number: 5, row: 6, col: 1, length: 5, text: "Ehemaliger neunter Planet (5)", answer: "PLUTO" },
+            ],
+            down: [
+              { number: 1, row: 0, col: 0, length: 4, text: "Roter Planet (4)", answer: "MARS" },
+              { number: 2, row: 0, col: 5, length: 5, text: "Leuchtendes Himmelsobjekt (5)", answer: "STERN" },
+            ],
+          },
+        },
         hints: [
           "3 waagerecht: Ein Himmelskörper, der die Sonne umkreist.",
           "5 senkrecht: Die griechische Göttin der Jagd und des Mondes.",
@@ -224,7 +266,18 @@ const chapters: ChapterDef[] = [
         description:
           "Decke Paare von Sternbildern und ihren Namen auf, um alle Karten aufzulösen.",
         isSignature: false,
-        data: {},
+        data: {
+          pairs: [
+            { id: 1, name: "Orion", symbol: "\u2694\uFE0F" },
+            { id: 2, name: "Lyra", symbol: "\uD83C\uDFB5" },
+            { id: 3, name: "Draco", symbol: "\uD83D\uDC09" },
+            { id: 4, name: "Cygnus", symbol: "\uD83E\uDDA2" },
+            { id: 5, name: "Ursa", symbol: "\uD83D\uDC3B" },
+            { id: 6, name: "Corona", symbol: "\uD83D\uDC51" },
+            { id: 7, name: "Cassiopeia", symbol: "\uD83D\uDC8E" },
+            { id: 8, name: "Aquila", symbol: "\uD83E\uDD85" },
+          ],
+        },
         hints: [
           "Merke dir die Positionen der Eckkarten zuerst.",
           "Die Sternbilder in der oberen Reihe gehören alle zur Nordhalbkugel.",
@@ -241,7 +294,13 @@ const chapters: ChapterDef[] = [
         description:
           "Erkenne das kosmische Muster in der Zahlenreihe und finde die fehlende Zahl.",
         isSignature: false,
-        data: {},
+        data: {
+          sequences: [
+            { shown: [2, 4, 8, 16, 32], answers: [64, 128], hint: "Jede Zahl verdoppelt sich" },
+            { shown: [1, 1, 2, 3, 5, 8], answers: [13, 21], hint: "Fibonacci \u2014 addiere die letzten zwei" },
+            { shown: [3, 6, 11, 18, 27], answers: [38, 51], hint: "Die Differenzen wachsen: +3, +5, +7, +9..." },
+          ],
+        },
         hints: [
           "Die Abstände zwischen den Zahlen verändern sich regelmäßig.",
           "Versuche, die Differenzen der aufeinanderfolgenden Zahlen zu bilden.",

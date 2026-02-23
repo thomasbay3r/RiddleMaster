@@ -1,0 +1,243 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.5rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.gridWrapper {
+  position: relative;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  gap: 1px;
+  background: rgba(192, 192, 224, 0.15);
+  border: 1px solid rgba(192, 192, 224, 0.2);
+  border-radius: 4px;
+}
+
+.cell {
+  width: 38px;
+  height: 38px;
+  background: rgba(10, 14, 39, 0.8);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s;
+  position: relative;
+  padding: 0;
+}
+
+.cell:hover {
+  background: rgba(0, 212, 255, 0.12);
+}
+
+.cellStart {
+  background: rgba(0, 212, 255, 0.15);
+}
+
+.cellStart::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00d4ff;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+.cellAnswer {
+  background: rgba(255, 215, 0, 0.15);
+  box-shadow: inset 0 0 12px rgba(255, 215, 0, 0.2);
+}
+
+.cellAnswer::after {
+  content: '\2605';
+  font-size: 1.1rem;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+.cellCorrect {
+  animation: correctPulse 0.6s ease-in-out;
+  background: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.cellWrong {
+  animation: shake 0.4s ease-in-out;
+  background: rgba(255, 68, 68, 0.2);
+}
+
+.compass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Cinzel', serif;
+  color: #c0c0e0;
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+.compassRose {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(192, 192, 224, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compassN,
+.compassS,
+.compassO,
+.compassW {
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.compassN { top: 4px; left: 50%; transform: translateX(-50%); color: #ffd700; }
+.compassS { bottom: 4px; left: 50%; transform: translateX(-50%); color: #8888aa; }
+.compassO { right: 6px; top: 50%; transform: translateY(-50%); color: #8888aa; }
+.compassW { left: 6px; top: 50%; transform: translateY(-50%); color: #8888aa; }
+
+.compassCenter {
+  width: 8px;
+  height: 8px;
+  background: #c0c0e0;
+  border-radius: 50%;
+}
+
+.compassNeedle {
+  position: absolute;
+  width: 2px;
+  height: 28px;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to top, #c0c0e0, #ffd700);
+  border-radius: 1px;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.instruction {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(26, 5, 51, 0.5);
+  border: 1px solid rgba(192, 192, 224, 0.15);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #c0c0e0;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.instructionActive {
+  border-color: #00d4ff;
+  background: rgba(0, 212, 255, 0.08);
+  color: #e8e8f0;
+}
+
+.instructionDone {
+  border-color: rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+}
+
+.instructionNumber {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(192, 192, 224, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #c0c0e0;
+  text-align: center;
+  min-height: 1.5em;
+}
+
+.statusError {
+  color: #ff6666;
+}
+
+.statusSuccess {
+  color: #ffd700;
+}
+
+.button {
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  border-radius: 8px;
+  color: #00d4ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.button:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: #00d4ff;
+}
+
+@keyframes correctPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
