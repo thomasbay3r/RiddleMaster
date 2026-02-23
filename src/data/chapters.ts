@@ -618,7 +618,12 @@ const chapters: ChapterDef[] = [
         description:
           "Eine geheime Botschaft wurde mit einer Caesar-Verschlüsselung codiert. Finde den Schlüssel und entschlüssle sie.",
         isSignature: true,
-        data: {},
+        data: {
+          encrypted: "GLH VWHUQH OHLWHQ XQV GXUFK GLH QDFKW",
+          shift: 3,
+          decrypted: "DIE STERNE LEITEN UNS DURCH DIE NACHT",
+          keyword: "STERNE",
+        },
         hints: [
           "Versuche verschiedene Verschiebungen, beginnend bei 3.",
           "Das häufigste Zeichen im Chiffretext steht vermutlich für 'E'.",
@@ -635,7 +640,21 @@ const chapters: ChapterDef[] = [
         description:
           "Setze die Puzzleteile zusammen, um das vollständige Sternbild des Schwans zu enthüllen.",
         isSignature: false,
-        data: {},
+        data: {
+          gridSize: 3,
+          pieces: [
+            { id: 0, symbol: "\u2605", gradient: "linear-gradient(135deg, #1a0533, #2d1b69)" },
+            { id: 1, symbol: "\u25C6", gradient: "linear-gradient(135deg, #0a2463, #1a0533)" },
+            { id: 2, symbol: "\u25CF", gradient: "linear-gradient(135deg, #1a3a5c, #0a0e27)" },
+            { id: 3, symbol: "\u25B2", gradient: "linear-gradient(135deg, #2d1b69, #1a3a5c)" },
+            { id: 4, symbol: "\u2726", gradient: "linear-gradient(135deg, #0a0e27, #3d1f5c)" },
+            { id: 5, symbol: "\u25C7", gradient: "linear-gradient(135deg, #3d1f5c, #0a2463)" },
+            { id: 6, symbol: "\u2736", gradient: "linear-gradient(135deg, #1a0533, #0a0e27)" },
+            { id: 7, symbol: "\u25BC", gradient: "linear-gradient(135deg, #0a2463, #2d1b69)" },
+            { id: 8, symbol: "\u2727", gradient: "linear-gradient(135deg, #1a3a5c, #3d1f5c)" },
+          ],
+          initialShuffle: [5, 2, 7, 0, 8, 3, 6, 1, 4],
+        },
         hints: [
           "Beginne mit den Randstücken und arbeite dich nach innen vor.",
           "Die Teile mit den hellsten Sternen gehören zur Mitte des Bildes.",
@@ -652,7 +671,25 @@ const chapters: ChapterDef[] = [
         description:
           "Fülle das 6x6-Raster mit Sternsymbolen, sodass jedes Symbol in jeder Zeile und Spalte genau einmal vorkommt.",
         isSignature: false,
-        data: {},
+        data: {
+          symbols: ["\u2605", "\u2726", "\u2727", "\u25C6", "\u25CF", "\u25B2"],
+          given: [
+            [1, 0, 0, 4, 0, 6],
+            [0, 0, 5, 0, 1, 0],
+            [0, 3, 0, 0, 0, 1],
+            [6, 0, 0, 0, 4, 0],
+            [0, 1, 0, 6, 0, 0],
+            [3, 0, 6, 0, 0, 2],
+          ],
+          solution: [
+            [1, 5, 3, 4, 2, 6],
+            [4, 6, 5, 2, 1, 3],
+            [2, 3, 4, 5, 6, 1],
+            [6, 2, 1, 3, 4, 5],
+            [5, 1, 2, 6, 3, 4],
+            [3, 4, 6, 1, 5, 2],
+          ],
+        },
         hints: [
           "Beginne mit der Zeile oder Spalte, die bereits die meisten Symbole enthält.",
           "In Block 2 fehlt nur noch das Mond-Symbol.",
@@ -669,7 +706,18 @@ const chapters: ChapterDef[] = [
         description:
           "Drehe die Rohrstücke, um die Sternenlicht-Bahnen vom Quellstern zum Zielstern zu verbinden.",
         isSignature: false,
-        data: {},
+        data: {
+          gridSize: 5,
+          source: [0, 0],
+          target: [4, 4],
+          pipes: [
+            [{ type: "corner", correct: 90, initial: 180 }, { type: "straight", correct: 0, initial: 90 }, { type: "corner", correct: 180, initial: 0 }, { type: "straight", correct: 0, initial: 0 }, { type: "empty", correct: 0, initial: 0 }],
+            [{ type: "straight", correct: 90, initial: 0 }, { type: "empty", correct: 0, initial: 0 }, { type: "straight", correct: 90, initial: 90 }, { type: "empty", correct: 0, initial: 0 }, { type: "empty", correct: 0, initial: 0 }],
+            [{ type: "corner", correct: 0, initial: 270 }, { type: "straight", correct: 0, initial: 90 }, { type: "tee", correct: 90, initial: 0 }, { type: "straight", correct: 0, initial: 0 }, { type: "corner", correct: 180, initial: 90 }],
+            [{ type: "empty", correct: 0, initial: 0 }, { type: "empty", correct: 0, initial: 0 }, { type: "straight", correct: 90, initial: 0 }, { type: "empty", correct: 0, initial: 0 }, { type: "straight", correct: 90, initial: 90 }],
+            [{ type: "empty", correct: 0, initial: 0 }, { type: "empty", correct: 0, initial: 0 }, { type: "corner", correct: 0, initial: 90 }, { type: "straight", correct: 0, initial: 90 }, { type: "corner", correct: 270, initial: 0 }],
+          ],
+        },
         hints: [
           "Beginne beim Quellstern und arbeite dich Stück für Stück vor.",
           "Manche Rohrstücke haben nur zwei mögliche Ausrichtungen.",

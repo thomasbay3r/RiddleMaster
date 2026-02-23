@@ -1,0 +1,233 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.encryptedText {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.15rem;
+  color: #ffd700;
+  text-align: center;
+  letter-spacing: 0.15em;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 215, 0, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 8px;
+  max-width: 100%;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+.decryptedPreview {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.1rem;
+  color: #c0c0e0;
+  text-align: center;
+  letter-spacing: 0.12em;
+  padding: 0.8rem 1.5rem;
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 8px;
+  min-height: 2.5em;
+  max-width: 100%;
+  word-break: break-word;
+  line-height: 1.6;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.decryptedCorrect {
+  color: #00d4ff;
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
+}
+
+.shiftControl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.shiftLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #8888aa;
+}
+
+.shiftValue {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: #00d4ff;
+  font-weight: 700;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(192, 192, 224, 0.15);
+  outline: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #00d4ff, #0a2463);
+  border: 2px solid rgba(0, 212, 255, 0.6);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+  transition: box-shadow 0.2s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.5);
+}
+
+.slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #00d4ff, #0a2463);
+  border: 2px solid rgba(0, 212, 255, 0.6);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+.alphabetMapping {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  max-width: 520px;
+}
+
+.letterMap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.65rem;
+  line-height: 1.3;
+}
+
+.letterFrom {
+  color: #ffd700;
+}
+
+.letterArrow {
+  color: #8888aa;
+  font-size: 0.5rem;
+}
+
+.letterTo {
+  color: #00d4ff;
+}
+
+.keywordSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.keywordLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #c0c0e0;
+  text-align: center;
+}
+
+.keywordRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.keywordInput {
+  padding: 0.5rem 1rem;
+  background: rgba(10, 14, 39, 0.7);
+  border: 1px solid rgba(192, 192, 224, 0.2);
+  border-radius: 8px;
+  color: #e8e8f0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  outline: none;
+  width: 200px;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.keywordInput:focus {
+  border-color: rgba(0, 212, 255, 0.5);
+}
+
+.keywordInput:disabled {
+  opacity: 0.4;
+}
+
+.submitButton {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+  color: #ffd700;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.1) 100%);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.2);
+}
+
+.submitButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.feedback {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  color: #ff6b6b;
+}
+
+.feedbackSuccess {
+  color: #ffd700;
+  animation: celebrateGold 0.8s ease;
+}
+
+@keyframes celebrateGold {
+  0% { transform: scale(1); opacity: 0; }
+  30% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
