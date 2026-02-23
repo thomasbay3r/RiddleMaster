@@ -1,0 +1,207 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.starArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 100px;
+  width: 100%;
+  max-width: 400px;
+  background: rgba(10, 14, 39, 0.5);
+  border: 1px solid rgba(192, 192, 224, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.blinkStar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #1a2040, #0a0e27);
+  border: 2px solid rgba(192, 192, 224, 0.2);
+  transition: background 0.1s, box-shadow 0.1s, border-color 0.1s;
+}
+
+.blinkStarActive {
+  background: radial-gradient(circle at 40% 35%, #00f0ff, #00d4ff);
+  border-color: #00d4ff;
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.7), 0 0 48px rgba(0, 212, 255, 0.35);
+}
+
+.currentLetter {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: #c0c0e0;
+  text-align: center;
+  min-height: 1.2em;
+}
+
+.currentMorse {
+  font-family: 'Courier New', monospace;
+  font-size: 1.4rem;
+  color: #00d4ff;
+  text-align: center;
+  letter-spacing: 0.3em;
+  min-height: 1.6em;
+}
+
+.playButton {
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  border-radius: 8px;
+  color: #00d4ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.playButton:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: #00d4ff;
+}
+
+.playButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Morse reference table */
+.referenceToggle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #8888aa;
+  background: none;
+  border: 1px solid rgba(136, 136, 170, 0.3);
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.referenceToggle:hover {
+  color: #c0c0e0;
+  border-color: rgba(192, 192, 224, 0.5);
+}
+
+.referenceTable {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 0.3rem;
+  width: 100%;
+  max-width: 500px;
+  background: rgba(10, 14, 39, 0.4);
+  border: 1px solid rgba(192, 192, 224, 0.1);
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.referenceEntry {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.refLetter {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffd700;
+  width: 1.2rem;
+}
+
+.refMorse {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #c0c0e0;
+}
+
+.refLetterHighlight {
+  color: #00d4ff;
+  text-shadow: 0 0 6px rgba(0, 212, 255, 0.5);
+}
+
+/* Input */
+.inputRow {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+}
+
+.textInput {
+  flex: 1;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 2px solid rgba(192, 192, 224, 0.2);
+  border-radius: 8px;
+  color: #e8e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.textInput:focus {
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.submitButton {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+  color: #ffd700;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.submitButton:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.1) 100%);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.2);
+}
+
+.feedback {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  color: #ff6b6b;
+}
+
+.feedbackSuccess {
+  color: #ffd700;
+  animation: celebrateGold 0.8s ease;
+}
+
+@keyframes celebrateGold {
+  0% { transform: scale(1); opacity: 0; }
+  30% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}

@@ -1,0 +1,226 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.progressBar {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progressLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #c0c0e0;
+  text-align: center;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 6px;
+  background: rgba(192, 192, 224, 0.15);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #ffd700);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.questionCard {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(10, 14, 39, 0.5);
+  border: 1px solid rgba(192, 192, 224, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.questionText {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  color: #e8e8f0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.optionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.optionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 2px solid rgba(192, 192, 224, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+}
+
+.optionButton:hover:not(:disabled) {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.08);
+  transform: translateX(4px);
+}
+
+.optionButton:disabled {
+  cursor: default;
+}
+
+.optionLetter {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #00d4ff;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.optionText {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #c0c0e0;
+}
+
+.optionCorrect {
+  border-color: #2ecc71 !important;
+  background: rgba(46, 204, 113, 0.15) !important;
+}
+
+.optionCorrect .optionLetter {
+  color: #2ecc71;
+  border-color: #2ecc71;
+}
+
+.optionCorrect .optionText {
+  color: #2ecc71;
+}
+
+.optionWrong {
+  border-color: #ff4444 !important;
+  background: rgba(255, 68, 68, 0.1) !important;
+  animation: shake 0.4s ease-in-out;
+}
+
+.optionWrong .optionLetter {
+  color: #ff4444;
+  border-color: #ff4444;
+}
+
+.optionWrong .optionText {
+  color: #ff6b6b;
+}
+
+/* Result screen */
+.resultCard {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(10, 14, 39, 0.5);
+  border: 1px solid rgba(192, 192, 224, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.resultScore {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: #ffd700;
+}
+
+.resultStars {
+  display: flex;
+  gap: 0.3rem;
+  font-size: 1.5rem;
+}
+
+.starFilled {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.starEmpty {
+  color: rgba(192, 192, 224, 0.25);
+}
+
+.resultMessage {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.resultPass {
+  color: #2ecc71;
+}
+
+.resultFail {
+  color: #ff6b6b;
+}
+
+.retryButton {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 212, 255, 0.05) 100%);
+  color: #00d4ff;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retryButton:hover {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.25) 0%, rgba(0, 212, 255, 0.1) 100%);
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.2);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

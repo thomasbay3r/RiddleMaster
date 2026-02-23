@@ -1,0 +1,211 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.progress {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #c0c0e0;
+}
+
+/* Syllable pool */
+.syllablePool {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.5rem;
+  padding: 0.75rem;
+  max-width: 500px;
+  border: 1px solid rgba(192, 192, 224, 0.1);
+  border-radius: 10px;
+  background: rgba(10, 14, 39, 0.3);
+}
+
+.syllableBubble {
+  padding: 0.5rem 0.9rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e8e8f0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(0, 212, 255, 0.15) 0%, rgba(10, 14, 39, 0.8) 70%);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.syllableBubble:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.syllableBubbleUsed {
+  opacity: 0.15;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Word slots */
+.wordSlots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.wordSlot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid rgba(192, 192, 224, 0.15);
+  border-radius: 10px;
+  background: rgba(10, 14, 39, 0.3);
+  min-height: 3rem;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.wordSlotActive {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.wordSlotSolved {
+  border-color: rgba(255, 215, 0, 0.4);
+  background: rgba(255, 215, 0, 0.05);
+  cursor: default;
+}
+
+.wordSlotShake {
+  animation: shake 0.4s ease-in-out;
+}
+
+.slotNumber {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #8888aa;
+  width: 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.slotSyllables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.slotSyllable {
+  padding: 0.35rem 0.7rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.slotSyllable:hover {
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.15);
+}
+
+.slotSyllableSolved {
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.5);
+  background: rgba(255, 215, 0, 0.15);
+  cursor: default;
+  pointer-events: none;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
+}
+
+.slotPlaceholder {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #8888aa;
+  padding: 0.35rem 0;
+}
+
+.slotSolvedLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.checkButton {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+  color: #ffd700;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.checkButton:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.1) 100%);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.2);
+}
+
+.checkButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.feedback {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  color: #ff6b6b;
+}
+
+.feedbackSuccess {
+  color: #ffd700;
+  animation: celebrateGold 0.8s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes celebrateGold {
+  0% { transform: scale(1); opacity: 0; }
+  30% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}

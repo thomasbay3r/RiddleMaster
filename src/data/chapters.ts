@@ -754,7 +754,19 @@ const chapters: ChapterDef[] = [
         description:
           "Beantworte Multiple-Choice-Fragen zu Astronomie und Mythologie, um den Drachen zu beeindrucken.",
         isSignature: true,
-        data: {},
+        data: {
+          requiredCorrect: 6,
+          questions: [
+            { question: "Welcher Planet ist der größte in unserem Sonnensystem?", options: ["Saturn", "Jupiter", "Neptun", "Uranus"], correct: 1 },
+            { question: "Wie heißt der nächste Stern zur Erde (außer der Sonne)?", options: ["Sirius", "Alpha Centauri", "Proxima Centauri", "Wega"], correct: 2 },
+            { question: "Welcher griechische Gott ist Namensgeber für den Planeten Mars?", options: ["Ares", "Zeus", "Hermes", "Poseidon"], correct: 0 },
+            { question: "Wie viele Planeten hat unser Sonnensystem offiziell?", options: ["7", "8", "9", "10"], correct: 1 },
+            { question: "Was ist eine Supernova?", options: ["Ein besonders heller Stern", "Die Explosion eines Sterns", "Ein Schwarzes Loch", "Eine Galaxie"], correct: 1 },
+            { question: "Welches Sternbild enthält den Polarstern?", options: ["Großer Bär", "Kleiner Bär", "Orion", "Kassiopeia"], correct: 1 },
+            { question: "Woraus besteht ein Kometenschweif hauptsächlich?", options: ["Gestein", "Gas und Staub", "Wasser", "Metall"], correct: 1 },
+            { question: "Wer war die griechische Göttin des Mondes?", options: ["Aphrodite", "Athene", "Artemis", "Hera"], correct: 2 },
+          ],
+        },
         hints: [
           "Die Antwort auf die erste Frage hat mit griechischer Mythologie zu tun.",
           "Bei der dritten Frage ist es hilfreich, an die Größe der Planeten zu denken.",
@@ -771,10 +783,19 @@ const chapters: ChapterDef[] = [
         description:
           "Die Sterne von Draco blinken in einem rhythmischen Muster. Entschlüssle den Morse-Code.",
         isSignature: false,
-        data: {},
+        data: {
+          message: "DRACO",
+          morseMap: {
+            "A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".",
+            "F": "..-.", "G": "--.", "H": "....", "I": "..", "J": ".---",
+            "K": "-.-", "L": ".-..", "M": "--", "N": "-.", "O": "---",
+            "P": ".--.", "Q": "--.-", "R": ".-.", "S": "...", "T": "-",
+            "U": "..-", "V": "...-", "W": ".--", "X": "-..-", "Y": "-.--", "Z": "--..",
+          },
+        },
         hints: [
           "Kurzes Blinken ist ein Punkt, langes Blinken ein Strich.",
-          "Das erste Wort hat vier Buchstaben und beginnt mit 'S'.",
+          "Die Nachricht ist der Name eines Sternbilds mit fünf Buchstaben.",
         ],
         clue: "HEIM",
         backgroundImage: "/images/puzzle-bg-ch6.png",
@@ -788,7 +809,26 @@ const chapters: ChapterDef[] = [
         description:
           "Lege die geometrischen Formen so zusammen, dass sie die Silhouette des Drachen-Sternbilds ergeben.",
         isSignature: false,
-        data: {},
+        data: {
+          zones: [
+            { id: 1, name: "Kopf", path: "M10,10 L30,10 L30,25 L10,25 Z", color: "#ffd700" },
+            { id: 2, name: "Hals", path: "M15,25 L25,25 L25,40 L15,40 Z", color: "#00d4ff" },
+            { id: 3, name: "Körper", path: "M5,40 L35,40 L35,65 L5,65 Z", color: "#9b59b6" },
+            { id: 4, name: "Linker Flügel", path: "M0,45 L5,40 L5,60 L0,55 Z", color: "#c0c0e0" },
+            { id: 5, name: "Rechter Flügel", path: "M35,40 L40,45 L40,55 L35,60 Z", color: "#e74c3c" },
+            { id: 6, name: "Schwanz", path: "M15,65 L25,65 L20,85 Z", color: "#2ecc71" },
+            { id: 7, name: "Beine", path: "M10,65 L15,65 L12,80 M25,65 L30,65 L28,80", color: "#f39c12" },
+          ],
+          pieces: [
+            { id: 1, label: "\u25AC", matchesZone: 1 },
+            { id: 2, label: "\u25AE", matchesZone: 2 },
+            { id: 3, label: "\u25A0", matchesZone: 3 },
+            { id: 4, label: "\u25C4", matchesZone: 4 },
+            { id: 5, label: "\u25BA", matchesZone: 5 },
+            { id: 6, label: "\u25BC", matchesZone: 6 },
+            { id: 7, label: "\u256B", matchesZone: 7 },
+          ],
+        },
         hints: [
           "Das große Dreieck bildet den Kopf des Drachen.",
           "Der Schwanz besteht aus dem Parallelogramm und dem kleinen Dreieck.",
@@ -805,7 +845,15 @@ const chapters: ChapterDef[] = [
         description:
           "Kombiniere die verstreuten Silben zu vollständigen astronomischen Begriffen.",
         isSignature: false,
-        data: {},
+        data: {
+          words: [
+            { answer: "SONNENSYSTEM", syllables: ["SON", "NEN", "SYS", "TEM"] },
+            { answer: "MILCHSTRASSE", syllables: ["MILCH", "STRAS", "SE"] },
+            { answer: "STERNBILD", syllables: ["STERN", "BILD"] },
+            { answer: "GALAXIE", syllables: ["GA", "LA", "XIE"] },
+          ],
+          allSyllables: ["SYS", "GA", "MILCH", "STERN", "TEM", "SE", "LA", "SON", "BILD", "NEN", "STRAS", "XIE"],
+        },
         hints: [
           "Eine der gesuchten Silbenkombinationen ergibt 'Ga-la-xie'.",
           "Achte auf Silben, die nur zu einem einzigen Wort passen können.",

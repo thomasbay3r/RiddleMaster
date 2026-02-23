@@ -1,0 +1,166 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.progress {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #c0c0e0;
+}
+
+.silhouetteArea {
+  position: relative;
+  width: 260px;
+  height: 320px;
+  background: rgba(10, 14, 39, 0.5);
+  border: 1px solid rgba(192, 192, 224, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.silhouetteSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.zone {
+  cursor: pointer;
+  transition: opacity 0.2s, stroke 0.3s;
+}
+
+.zone:hover {
+  opacity: 0.85;
+}
+
+.zoneEmpty {
+  fill: rgba(192, 192, 224, 0.08);
+  stroke: rgba(192, 192, 224, 0.25);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.zoneSelected {
+  fill: rgba(0, 212, 255, 0.15);
+  stroke: #00d4ff;
+  stroke-width: 2;
+  stroke-dasharray: none;
+  animation: pulseZone 1.2s ease-in-out infinite;
+}
+
+.zoneFilled {
+  stroke-width: 1.5;
+  stroke-dasharray: none;
+  cursor: pointer;
+}
+
+.zoneLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.8px;
+  fill: #c0c0e0;
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+
+.zoneLabelFilled {
+  fill: rgba(10, 14, 39, 0.7);
+  font-weight: 600;
+}
+
+/* Piece tray */
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  max-width: 400px;
+  padding: 0.75rem;
+  border: 1px solid rgba(192, 192, 224, 0.1);
+  border-radius: 10px;
+  background: rgba(10, 14, 39, 0.3);
+  min-height: 60px;
+}
+
+.piece {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 2px solid rgba(192, 192, 224, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.piece:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.pieceUsed {
+  opacity: 0.15;
+  cursor: default;
+  pointer-events: none;
+}
+
+.instruction {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #8888aa;
+  text-align: center;
+  min-height: 1.3em;
+}
+
+.feedback {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  color: #ff6b6b;
+}
+
+.feedbackSuccess {
+  color: #ffd700;
+  animation: celebrateGold 0.8s ease;
+}
+
+@keyframes pulseZone {
+  0%, 100% { stroke-opacity: 1; }
+  50% { stroke-opacity: 0.5; }
+}
+
+@keyframes celebrateGold {
+  0% { transform: scale(1); opacity: 0; }
+  30% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.shakeAnim {
+  animation: shake 0.4s ease-in-out;
+}
