@@ -97,7 +97,7 @@ export default function SkyMap() {
 
   function handleClick(id: number) {
     const state = getState(id);
-    if (state === "available") {
+    if (state === "available" || (devMode && state === "complete")) {
       navigate(`/chapter/${id}`);
     }
   }
