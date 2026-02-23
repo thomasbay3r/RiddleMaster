@@ -37,8 +37,8 @@ const GameContext = createContext<GameContextValue | null>(null);
 /*  Constants                                                          */
 /* ------------------------------------------------------------------ */
 
-/** Number of puzzles per chapter (7 regular + 1 signature) */
-const PUZZLES_PER_CHAPTER = 8;
+/** Number of puzzles per chapter (1 signature + 3 regular) */
+const PUZZLES_PER_CHAPTER = 4;
 
 /* ------------------------------------------------------------------ */
 /*  Provider                                                           */
