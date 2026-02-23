@@ -466,7 +466,27 @@ const chapters: ChapterDef[] = [
         description:
           "Löse ein kniffliges Einstein-Rätsel, um die Positionen der Sterne in Orions Gürtel zu bestimmen.",
         isSignature: true,
-        data: {},
+        data: {
+          stars: ["Sirius", "Vega", "Antares", "Polaris"],
+          categories: {
+            color: ["Rot", "Blau", "Gold", "Silber"],
+            planet: ["Mars", "Venus", "Jupiter", "Saturn"],
+          },
+          solution: {
+            Sirius: { color: "Blau", planet: "Mars" },
+            Vega: { color: "Silber", planet: "Venus" },
+            Antares: { color: "Rot", planet: "Saturn" },
+            Polaris: { color: "Gold", planet: "Jupiter" },
+          },
+          clues: [
+            "Sirius hat keine rote Farbe.",
+            "Der goldene Stern gehört zu Jupiter.",
+            "Antares ist rot.",
+            "Der silberne Stern gehört zu Venus.",
+            "Polaris gehört nicht zu Mars.",
+            "Vega ist nicht blau.",
+          ],
+        },
         hints: [
           "Beginne mit den Hinweisen, die nur eine mögliche Lösung zulassen.",
           "Der mittlere Stern des Gürtels hat eine besondere Eigenschaft.",
@@ -483,7 +503,14 @@ const chapters: ChapterDef[] = [
         description:
           "Entschlüssle die Bildfolge, die zusammen einen astronomischen Begriff ergibt.",
         isSignature: false,
-        data: {},
+        data: {
+          rebuses: [
+            { display: "\u2B50 + \uD83C\uDF0A = ?", answer: "STERNSCHNUPPE", hint: "Ein fallender Stern..." },
+            { display: "\uD83C\uDF19 + \uD83D\uDD26 = ?", answer: "MONDLICHT", hint: "Was der Mond gibt..." },
+            { display: "\u2600\uFE0F + \uD83D\uDD04 + \uD83C\uDF0D = ?", answer: "SONNENSYSTEM", hint: "Alles dreht sich um die Sonne..." },
+            { display: "\uD83C\uDF0C + \uD83D\uDEE4\uFE0F = ?", answer: "MILCHSTRASSE", hint: "Unsere Heimatgalaxie..." },
+          ],
+        },
         hints: [
           "Das erste Bild klingt wie ein alltäglicher Gegenstand.",
           "Kombiniere die Silben der Bildnamen zu einem einzigen Wort.",
@@ -500,10 +527,24 @@ const chapters: ChapterDef[] = [
         description:
           "Fülle das Raster nach den Zahlenhinweisen und enthülle eine verborgene Sternen-Pixel-Art.",
         isSignature: false,
-        data: {},
+        data: {
+          size: 8,
+          solution: [
+            [0, 0, 0, 1, 1, 0, 0, 0],
+            [0, 0, 1, 1, 1, 1, 0, 0],
+            [0, 1, 1, 1, 1, 1, 1, 0],
+            [1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1],
+            [0, 1, 1, 1, 1, 1, 1, 0],
+            [0, 0, 1, 1, 1, 1, 0, 0],
+            [0, 0, 0, 1, 1, 0, 0, 0],
+          ],
+          rowHints: [[2], [4], [6], [8], [8], [6], [4], [2]],
+          colHints: [[2], [4], [6], [8], [8], [6], [4], [2]],
+        },
         hints: [
           "Suche zuerst nach Zeilen und Spalten, die fast vollständig gefüllt sind.",
-          "Eine Zeile mit der Angabe '5' in einem 5er-Raster ist komplett ausgefüllt.",
+          "Die Zeilen mit der Angabe '8' im 8er-Raster sind komplett ausgefüllt.",
         ],
         clue: "DEN",
         backgroundImage: "/images/puzzle-bg-ch4.png",
@@ -517,7 +558,30 @@ const chapters: ChapterDef[] = [
         description:
           "Finde die versteckten Wörter aus Orions Jagdrevier im Buchstabenfeld.",
         isSignature: false,
-        data: {},
+        data: {
+          gridSize: 10,
+          words: ["STERN", "ORBIT", "KOMET", "NEBEL", "VENUS", "MARS"],
+          grid: [
+            ["S", "T", "E", "R", "N", "K", "A", "L", "P", "O"],
+            ["A", "O", "R", "M", "X", "O", "B", "N", "R", "R"],
+            ["T", "B", "I", "Q", "V", "M", "C", "E", "F", "B"],
+            ["U", "E", "T", "W", "E", "E", "D", "B", "G", "I"],
+            ["R", "N", "A", "Z", "N", "T", "H", "E", "J", "T"],
+            ["N", "E", "R", "S", "U", "R", "I", "L", "K", "M"],
+            ["V", "L", "E", "O", "S", "T", "A", "R", "S", "P"],
+            ["W", "X", "Y", "Z", "A", "B", "C", "D", "E", "Q"],
+            ["M", "A", "R", "S", "F", "G", "H", "I", "J", "L"],
+            ["K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"],
+          ],
+          wordPositions: {
+            STERN: [0, 0, 0, 4],
+            ORBIT: [0, 9, 4, 9],
+            KOMET: [0, 5, 4, 5],
+            NEBEL: [1, 7, 5, 7],
+            VENUS: [2, 4, 6, 4],
+            MARS: [8, 0, 8, 3],
+          },
+        },
         hints: [
           "Die Wörter können auch diagonal und rückwärts versteckt sein.",
           "Suche zuerst nach dem längsten Wort in der Liste.",

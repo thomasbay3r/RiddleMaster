@@ -1,0 +1,145 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1.25rem;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #8888aa;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gridWrapper {
+  display: inline-block;
+  user-select: none;
+}
+
+.gridTable {
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+.cell {
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #e8e8f0;
+  background: rgba(10, 14, 39, 0.5);
+  border: 1px solid rgba(192, 192, 224, 0.12);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.cell:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+.cellSelected {
+  background: rgba(0, 212, 255, 0.3);
+  border-color: rgba(0, 212, 255, 0.5);
+  color: #00d4ff;
+}
+
+.cellFound {
+  background: rgba(255, 215, 0, 0.25);
+  border-color: rgba(255, 215, 0, 0.4);
+  color: #ffd700;
+}
+
+.cellStart {
+  background: rgba(0, 212, 255, 0.45);
+  border-color: rgba(0, 212, 255, 0.6);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+.wordListSection {
+  min-width: 140px;
+}
+
+.wordListTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: #ffd700;
+  margin-bottom: 0.75rem;
+}
+
+.wordList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.wordItem {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #c0c0e0;
+  padding: 0.35rem 0.6rem;
+  background: rgba(26, 5, 51, 0.4);
+  border: 1px solid rgba(192, 192, 224, 0.1);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.wordItemFound {
+  color: #ffd700;
+  text-decoration: line-through;
+  border-color: rgba(255, 215, 0, 0.3);
+  background: rgba(255, 215, 0, 0.08);
+}
+
+.progress {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #c0c0e0;
+}
+
+.feedback {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  color: #ff6b6b;
+}
+
+.feedbackSuccess {
+  color: #ffd700;
+  animation: celebrateGold 0.8s ease;
+}
+
+.instructions {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #8888aa;
+  text-align: center;
+}
+
+@keyframes celebrateGold {
+  0% { transform: scale(1); opacity: 0; }
+  30% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
